@@ -1,0 +1,127 @@
+<div class="container-fluid d-flex justify-content-center align-items-center w-100 min-vh-100">
+  <div class="card my-3 p-3 shadow w-75">
+    <div class="row">
+
+      <!-- Left Side - Image -->
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <img src="../assets/6300959-removebg-preview-transformed.png" alt="Signup Image" class="img-fluid"
+          style="max-width: 100%; height: auto;">
+      </div>
+
+      <!-- Right Side - Form -->
+      <div class="col-md-6">
+        <h1 class="text-center fw-bold m-4">Sign Up Form</h1>
+        <div class="card-body">
+          <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)" novalidate>
+            <div class="row">
+              <div class="col form-group">
+                <label for="inpFname" class="form-label fw-bold mt-2">First Name</label>
+                <input type="text" name="firstname" id="inpFname" class="form-control border-2" ngModel
+                  #firstname="ngModel" required minlength="3" pattern="^[a-zA-Z]+$">
+
+                <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+                  <div *ngIf="firstname.errors?.['required']" class="form-text text-danger">
+                    First name is required.
+                  </div>
+                  <div *ngIf="firstname.errors?.['minlength']" class="form-text text-danger">
+                    First name must be at least 2 characters long.
+                  </div>
+                  <div *ngIf="firstname.errors?.['pattern']" class="form-text text-danger">
+                    First name should contain only alphabets.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col form-group">
+                <label for="inpLastname" class="form-label fw-bold mt-2">Last Name</label>
+                <input type="text" name="lastname" id="inpLastname" class="form-control border-2" ngModel
+                  #lastname="ngModel" required minlength="3" pattern="^[a-zA-Z]+$">
+
+                <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+                  <div *ngIf="lastname.errors?.['required']" class="form-text text-danger">
+                    Last name is required.
+                  </div>
+                  <div *ngIf="lastname.errors?.['minlength']" class="form-text text-danger">
+                    Last name must be at least 2 characters long.
+                  </div>
+                  <div *ngIf="lastname.errors?.['pattern']" class="form-text text-danger">
+                    Last name should contain only alphabets.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inpEmail" class="form-label fw-bold mt-2">Email</label>
+              <input type="email" name="email" id="inpEmail" class="form-control border-2" ngModel #email="ngModel"
+                required email>
+              
+              <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors?.['required']" class="form-text text-danger">
+                  Email is required.
+                </div>
+                <div *ngIf="email.errors?.['email']" class="form-text text-danger">
+                  Please enter a valid email address.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inpPh" class="form-label fw-bold mt-2">Phone Number</label>
+              <input type="tel" name="mobile" id="inpPh" class="form-control border-2" ngModel #mobile="ngModel"
+                required pattern="^[0-9]{12}$">
+              
+              <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+                <div *ngIf="mobile.errors?.['required']" class="form-text text-danger">
+                  Phone number is required.
+                </div>
+                <div *ngIf="mobile.errors?.['pattern']" class="form-text text-danger">
+                  Phone number must be exactly 12 digits.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inpPassword" class="form-label fw-bold mt-2">Password</label>
+              <input type="password" name="password" id="inpPassword" class="form-control border-2" ngModel
+                #password="ngModel" required minlength="8"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$">
+              
+              <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors?.['required']" class="form-text text-danger">
+                  Password is required.
+                </div>
+                <div *ngIf="password.errors?.['minlength']" class="form-text text-danger">
+                  Password must be at least 8 characters long.
+                </div>
+                <div *ngIf="password.errors?.['pattern']" class="form-text text-danger">
+                  Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inpCpass" class="form-label fw-bold mt-2">Confirm Password</label>
+              <input type="password" name="confirmPassword" id="inpCpass" class="form-control border-2" ngModel
+                #confirmPassword="ngModel" required [pattern]="password.value">
+
+              <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+                <div *ngIf="confirmPassword.errors?.['required']" class="form-text text-danger">
+                  Confirm password is required.
+                </div>
+                <div *ngIf="confirmPassword.value !== password.value && confirmPassword.touched" class="form-text text-danger">
+                  Passwords do not match.
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="text-center btn btn-primary w-100 my-4" [disabled]="registrationForm.invalid">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
